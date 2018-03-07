@@ -6,16 +6,25 @@ import java.awt.image.ImageConsumer;
 import java.awt.image.ImageObserver;
 import java.awt.image.ImageProducer;
 import java.io.*;
+import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        String filename = "E:\\dev\\imageCategorizer\\src\\com\\company\\sample.jpg";
+       // String filename = "E:\\dev\\imageCategorizer\\src\\com\\company\\sample.jpg";
+        File folder = new File("E:\\dev\\imageCategorizer\\src\\input");
+        File[] listOfFiles = folder.listFiles();
+        ArrayList<String> files = new ArrayList<>();
 
+        for(int k = 0; k < listOfFiles.length;k++){
+            if(listOfFiles[k].isFile()){
+                files.add(listOfFiles[k].getName());
+            }
+        }
 
         try{
-            BufferedImage bimg = ImageIO.read(new File(filename));
+            BufferedImage bimg = ImageIO.read(new File);
             System.out.println("image added to buffer");
 
             int width = bimg.getWidth();
@@ -29,7 +38,7 @@ public class Main {
             new File("E:\\dev\\imageCategorizer\\src\\output\\" + ratio).mkdirs();
 
             //move the source image file to a folder called output
-            File afile = new File(filename);
+            File afile = new File(files.get(0));
 
 
             if(afile.renameTo(new File("E:\\dev\\imageCategorizer\\src\\output\\" + ratio + "\\" + afile.getName()))){
