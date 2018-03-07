@@ -24,7 +24,8 @@ public class Main {
         }
 
         try{
-            BufferedImage bimg = ImageIO.read(new File);
+
+            BufferedImage bimg = ImageIO.read(listOfFiles[0]);
             System.out.println("image added to buffer");
 
             int width = bimg.getWidth();
@@ -38,7 +39,7 @@ public class Main {
             new File("E:\\dev\\imageCategorizer\\src\\output\\" + ratio).mkdirs();
 
             //move the source image file to a folder called output
-            File afile = new File(files.get(0));
+            File afile =listOfFiles[0];
 
 
             if(afile.renameTo(new File("E:\\dev\\imageCategorizer\\src\\output\\" + ratio + "\\" + afile.getName()))){
