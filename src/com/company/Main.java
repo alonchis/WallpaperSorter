@@ -12,19 +12,18 @@ public class Main {
 
     public static void main(String[] args) {
 
-       // String filename = "E:\\dev\\imageCategorizer\\src\\com\\company\\sample.jpg";
+        // String filename = "E:\\dev\\imageCategorizer\\src\\com\\company\\sample.jpg";
         File folder = new File("E:\\dev\\imageCategorizer\\src\\input");
         File[] listOfFiles = folder.listFiles();
         ArrayList<String> files = new ArrayList<>();
 
-        for(int k = 0; k < listOfFiles.length;k++){
-            if(listOfFiles[k].isFile()){
+        for (int k = 0; k < listOfFiles.length; k++) {
+            if (listOfFiles[k].isFile()) {
                 files.add(listOfFiles[k].getName());
             }
         }
-
-        try{
-            for (File filename: listOfFiles) {
+        for (File filename : listOfFiles) {
+            try {
 
 
                 BufferedImage bimg = ImageIO.read(filename);
@@ -48,20 +47,23 @@ public class Main {
                     System.out.println("file moved succesfully");
                 } else
                     System.out.println("File failed to move. ");
+            } catch(Exception e){
+                System.out.println("the error is: " + e);
             }
-        } catch (Exception e){
-            System.out.println("the error is: " + e);
         }
 
     }
 
-    public static String getRatio(int w, int h){
+    public static String getRatio(int width, int height){
         //example ratio = width / height = 1920 / 1080 = 1.7778
+        // TODO: 3/7/2018 decide whether to use int or double? most output ended up in non traditional ratios
+        float w = width,
+                h = height;
         float ratio = w/h;
 
-        if (ratio == 16/9)
+        if (ratio == 16.0/9.0)
             return "16by9";
-        else if (ratio == 21/9)
+        else if (ratio == 21.0/9.0)
             return "21by9";
         else
             return "non traditional ratios";
