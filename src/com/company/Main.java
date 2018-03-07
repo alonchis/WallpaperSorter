@@ -24,28 +24,31 @@ public class Main {
         }
 
         try{
-
-            BufferedImage bimg = ImageIO.read(listOfFiles[0]);
-            System.out.println("image added to buffer");
-
-            int width = bimg.getWidth();
-            int height = bimg.getHeight();
-            String ratio = getRatio(width,height);
+            for (File filename: listOfFiles) {
 
 
-            System.out.println("image width: " + width + " and height of: " + height + "with a ratio of " + ratio);
-            System.out.println();
-           // new File("E:\\dev\\imageCategorizer\\src\\output").mkdir();
-            new File("E:\\dev\\imageCategorizer\\src\\output\\" + ratio).mkdirs();
+                BufferedImage bimg = ImageIO.read(filename);
+                System.out.println("image added to buffer");
 
-            //move the source image file to a folder called output
-            File afile =listOfFiles[0];
+                int width = bimg.getWidth();
+                int height = bimg.getHeight();
+                String ratio = getRatio(width, height);
 
 
-            if(afile.renameTo(new File("E:\\dev\\imageCategorizer\\src\\output\\" + ratio + "\\" + afile.getName()))){
-                System.out.println("file moved succesfully");
-            }else
-                System.out.println("File failed to move. ");
+                System.out.println("image width: " + width + " and height of: " + height + "with a ratio of " + ratio);
+                System.out.println();
+                // new File("E:\\dev\\imageCategorizer\\src\\output").mkdir();
+                new File("E:\\dev\\imageCategorizer\\src\\output\\" + ratio).mkdirs();
+
+                //move the source image file to a folder called output
+                File afile = filename;
+
+
+                if (afile.renameTo(new File("E:\\dev\\imageCategorizer\\src\\output\\" + ratio + "\\" + afile.getName()))) {
+                    System.out.println("file moved succesfully");
+                } else
+                    System.out.println("File failed to move. ");
+            }
         } catch (Exception e){
             System.out.println("the error is: " + e);
         }
